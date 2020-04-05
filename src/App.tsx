@@ -1,26 +1,33 @@
-import React from 'react';
-import logo from './logo.svg';
+import { Component } from 'react';
 import './App.css';
+import { LinearProbingHashTable } from './hashing/LinearProbing';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+export class App extends Component {
+  render() {
+    return null;
+  }
+
+  testItems(hashTable: any) {
+    console.time();
+    hashTable.insert(2, "foo");
+    hashTable.insert(12, "bar");
+    hashTable.get(2);
+    hashTable.insert(22, "foo1");
+    hashTable.insert(39, "bar1");
+    hashTable.get(12);
+    console.timeEnd();
+  }
+
+
+  createHashTable(type: string): void {
+    const ht = new LinearProbingHashTable(10);
+    this.testItems(ht);
+  }
+
+
+  componentDidMount() {
+    this.createHashTable('linearProbing');
+  }
 }
 
 export default App;
