@@ -3,7 +3,7 @@ export interface Element {
 }
 
 export class HashTable {
-    protected readonly array: Array<Array<Element>>;
+    protected readonly array: Array<undefined | Array<Element>>;
     protected readonly size: number;
 
     constructor(size: number) {
@@ -14,9 +14,7 @@ export class HashTable {
     getHashCode(item: any): number {
         if (typeof item === 'number') {
             return item % this.size;
-        }
-
-        else {
+        } else {
             let hash = 0;
             // Hash code implementation from java
             for (let i = 0; i < item.length; i++) {
